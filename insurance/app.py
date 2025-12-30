@@ -57,7 +57,7 @@ st.markdown("""
 @st.cache_resource
 def load_objects():
     model = tf.keras.models.load_model(
-        "insurance_model.h5",
+        "insurance_model.keras",
         compile=False
     )
     with open("scaler.pkl", "rb") as f:
