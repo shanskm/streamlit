@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import tensorflow as tf
-import pickle
+import joblib
 
 
 st.set_page_config(
@@ -57,7 +57,7 @@ st.markdown("""
 @st.cache_resource
 def load_objects():
     model = tf.keras.models.load_model(
-        "insurance_model.keras",
+        "insurance_model.h5",
         compile=False
     )
     with open("scaler.pkl", "rb") as f:
@@ -67,7 +67,10 @@ def load_objects():
     return model, scaler, columns
 
 
-model, scaler, columns = load_objects()
+# model, scaler, columns = load_objects()
+model= tf.keras.models.load_model("insurance_model.h5")
+scaler=joblib.load("scaler.pkl")
+columns= joblib.load("columns.pkl")
 
 
 st.markdown('<div class="card">', unsafe_allow_html=True)
