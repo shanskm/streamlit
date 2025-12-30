@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import tensorflow as tf
-import pickle
+import joblib
 
 
 st.set_page_config(
@@ -61,9 +61,9 @@ def load_objects():
         compile=False
     )
     with open("scaler.pkl", "rb") as f:
-        scaler = pickle.load(f)
+        scaler = joblib.load(f)
     with open("columns.pkl", "rb") as f:
-        columns = pickle.load(f)
+        columns = joblib.load(f)
     return model, scaler, columns
 
 
