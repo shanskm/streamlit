@@ -54,20 +54,23 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-@st.cache_resource
-def load_objects():
-    model = tf.keras.models.load_model(
-        "insurance_model.h5",
-        compile=False
-    )
-    with open("scaler.pkl", "rb") as f:
-        scaler = joblib.load(f)
-    with open("columns.pkl", "rb") as f:
-        columns = joblib.load(f)
-    return model, scaler, columns
+# @st.cache_resource
+# def load_objects():
+#     model = tf.keras.models.load_model(
+#         "insurance_model.h5",
+#         compile=False
+#     )
+#     with open("scaler.pkl", "rb") as f:
+#         scaler = joblib.load(f)
+#     with open("columns.pkl", "rb") as f:
+#         columns = joblib.load(f)
+#     return model, scaler, columns
 
 
-model, scaler, columns = load_objects()
+# model, scaler, columns = load_objects()
+model= tf.keras.models.load_model("insurance_model.h5")
+scaler=joblib.load("scaler.pkl")
+columns= joblib.load("columns.pkl")
 
 
 st.markdown('<div class="card">', unsafe_allow_html=True)
